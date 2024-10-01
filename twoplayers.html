@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>ROCK, PAPER, SCISSOR</title>
+      <meta name="author" content="olamilekan">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sixtyfour+Convergence&display=swap" rel="stylesheet">
+      
+      <style>
+        body{
+            background-color: #000000;
+            color: #ffffff;
+            text-align: center;
+        }
+        #rock{
+            font-size: 40px;
+            padding: 5px;
+            width: 70px;
+            height: 70px;
+
+        }
+        #paper{
+            font-size: 40px;
+            padding: 5px;
+            width: 70px;
+            height: 70px;
+        }
+        #scissor{
+            font-size: 40px;
+            padding: 5px;
+            width: 70px;
+            height: 70px;
+            
+            
+           
+        }
+        .player1{
+            background-color: transparent;
+            border: 4px solid purple;
+            border-radius: 55%;
+            margin: 8px;
+            
+
+        }
+        .player2{
+            background-color: transparent;
+            border: 4px solid purple;
+            border-radius: 55%;       
+            margin: 8px;
+
+        }
+        #play{
+            font-size: 20px;
+            background-color: transparent;
+            border: 2px solid green;
+            color: #ffffff;
+            padding: 10px;
+            margin: 20px;
+            border-radius: 5px;
+            margin-top: 30px;
+            font-family: "Fredoka", sans-serif;
+        }
+        .result{
+            background-color: #ffffff;
+            color: #000000;
+            margin: 40px;
+            font-family: "Fredoka", sans-serif;
+        }
+        .first-player{
+            margin-top: 50px;
+            font-family: "Fredoka", sans-serif;
+        }
+        .second-player{
+            margin-top: 50px;
+            font-family: "Fredoka", sans-serif;
+            
+        }
+        .bar {
+            width: 20px;
+            height: 4px;
+            background-color: red;
+            margin: 2px 0;
+        }
+        #menu{
+            position: absolute;
+            top:0;
+            right: 0;
+            text-decoration: none;
+            font-size: 15px;
+            color: yellow;
+            font-family: "Sixtyfour Convergence", sans-serif;
+        }
+        .container{
+            margin-top: 50px;
+        }
+        h1{
+            font-family: "Poppins", sans-serif;
+        }
+
+ 
+
+
+
+
+      </style>
+    </head>
+
+    <body>
+        <header>
+            <nav>
+                <div> <a href="index.html" id="menu">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    
+                    MENU </a>
+
+                </div>
+            </nav>
+        </header>
+       
+    <div class="container">
+        <h1>Two Players Rock Paper Scissors</h1>
+        <div class="choices">
+            <div class="first-player">
+                <h2>Player 1</h2>
+                <button class="player1" id="rock" data-choice="rock"> ✊🏻</button>
+                <button class="player1" id="paper" data-choice="paper"> 🤚🏻</button>
+                <button class="player1" id="scissor" data-choice="scissors"> ✌🏻</button>
+            </div>
+            <div class="second-player">
+                <h2>Player 2</h2>
+                <button class="player2" id="rock" data-choice="rock">  ✊🏻</button>
+                <button class="player2" id="paper" data-choice="paper">  🤚🏻</button>
+                <button class="player2" id="scissor" data-choice="scissors"> ✌🏻</button>
+            </div>
+        </div>
+        <button id="play">Play!</button>
+        <div class="result">
+            <h3 id="result"></h3>
+            <h3 id="result1"></h3>
+            <h3 id="result2"></h3>
+        </div>
+        
+    </div>
+
+  
+        <script>
+            let player1Choice = '';
+            let player2Choice = '';
+
+            document.querySelectorAll('.player1, .player2').forEach(button => {
+               button.addEventListener('click', (e) => {
+                  const choice = e.target.dataset.choice;
+
+                  if (e.target.classList.contains('player1')) {
+                     player1Choice = choice;
+                  } else {
+                     player2Choice = choice;
+                  }
+
+                  e.target.parentElement.querySelectorAll('.player1, .player2').forEach(btn => {
+                     btn.disabled = true; // Disable all buttons after a choice
+                     btn.style.opacity = '0.5';
+                     btn.style.fontSize = '45px';
+                     btn.style.width = '75px';
+                     btn.style.height = '75px';
+                  });
+                });
+            });
+
+            document.getElementById('play').addEventListener('click', () => {
+               if (player1Choice && player2Choice) {
+                  let result = '';
+
+                  if (player1Choice === player2Choice) {
+                     result = "It's a tie!";
+                  } else if (
+                     (player1Choice === 'rock' && player2Choice === 'scissors') ||
+                     (player1Choice === 'paper' && player2Choice === 'rock') ||
+                     (player1Choice === 'scissors' && player2Choice === 'paper')
+                    ) {
+                          result = "Player 1 wins! 🎉";
+                    } else {
+                        result = "Player 2 wins! 🎉";
+                    }
+            document.querySelector('.result').style.padding = '20px';
+            document.getElementById('result').innerText = `Player 1 : ${player1Choice}`;
+            document.getElementById('result1').innerText = `Player 2 : ${player2Choice}`;
+            document.getElementById('result2').innerText = `${result}`;
+               // Reset choices and enable buttons for a new game
+               player1Choice = '';
+               player2Choice = '';
+               document.querySelectorAll('button').forEach(btn => {
+                  btn.disabled = false; // Enable all buttons
+                  btn.style.opacity = '1';
+                  btn.style.fontSize = '45px';
+                  document.getElementById('play').style.fontSize = '20px';
+
+                 });
+                } else {
+                   document.getElementById('result').innerText = "Both players must choose!";
+                }
+            });
+
+
+   
+ 
+        </script>
+
+    </body> 
+</html>       
