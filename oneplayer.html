@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>ONE PLAYER ROCK, PAPER, SCISSOR</title>
+      <meta name="author" content="olamilekan">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sixtyfour+Convergence&display=swap" rel="stylesheet">
+      
+      <style>
+        body{
+            background-color: #000000;
+            color: #ffffff;
+            text-align: center;
+        }
+        .bar {
+            width: 20px;
+            height: 4px;
+            background-color: red;
+            margin: 2px 0;
+        }
+        #menu{
+            position: absolute;
+            top:0;
+            right: 0;
+            text-decoration: none;
+            font-size: 15px;
+            color: yellow;
+            font-family: "Sixtyfour Convergence", sans-serif;
+        }
+        .container{
+            margin-top: 60px;
+        }
+        h1{
+            font-family: "Poppins", sans-serif;
+        }
+        #rock{
+            font-size: 40px;
+            padding: 5px;
+            width: 70px;
+            height: 70px;
+
+        }
+        #paper{
+            font-size: 40px;
+            padding: 5px;
+            width: 70px;
+            height: 70px;
+        }
+        #scissors{
+            font-size: 40px;
+            padding: 5px;
+            width: 70px;
+            height: 70px;
+            
+            
+           
+        }
+        .player1{
+            background-color: transparent;
+            border: 4px solid purple;
+            border-radius: 55%;
+            margin: 8px;
+            
+
+        }
+        .result{
+            background-color: #ffffff;
+            color: #000000;
+            margin: 40px;
+            font-family: "Fredoka", sans-serif;
+
+        }
+
+      </style>
+    </head>
+
+    <body>
+        <header>
+            <nav>
+                <div> <a href="index.html" id="menu">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    
+                    MENU </a>
+
+                </div>
+            </nav>
+        </header>
+
+
+    <div class="container">
+        <h1>Player VS Computer</h1>
+
+        <div class="choices">
+            <button class="player1" id="rock"> ✊🏻</button>
+            <button class="player1" id="paper"> 🤚🏻</button>
+            <button class="player1" id="scissors"> ✌🏻</button>
+        </div>
+       <div class="result">
+        <h2 id="result"></h2>
+        <h2 id="result1"></h2>
+        <h2 id="result2"></h2>
+       </div> 
+        
+    </div>
+
+
+  
+        <script>
+          const choices = ['rock', 'paper', 'scissors'];
+
+document.getElementById('rock').addEventListener('click', () => playGame('rock'));
+document.getElementById('paper').addEventListener('click', () => playGame('paper'));
+document.getElementById('scissors').addEventListener('click', () => playGame('scissors'));
+
+function playGame(userChoice) {
+    const computerChoice = choices[Math.floor(Math.random() * choices.length)];
+    let result = document.querySelector('#result2');
+
+    if (userChoice === computerChoice) {
+        result = "It's a tie!";
+    } else if (
+        (userChoice === 'rock' && computerChoice === 'scissors') ||
+        (userChoice === 'paper' && computerChoice === 'rock') ||
+        (userChoice === 'scissors' && computerChoice === 'paper')
+    ) {
+        result = "You win! 🎉";
+    } else {
+        result = "You lose!";
+    }
+    document.querySelector('.result').style.padding = '20px';
+    document.getElementById('result').innerText = `You chose ${userChoice}`;
+    document.getElementById('result1').innerText = `Computer chose ${computerChoice}`;
+    document.getElementById('result2').innerText = `${result}`;
+}    
+
+		
+
+            
+
+
+            
+
+
+        </script>
+
+    </body> 
+</html>       
